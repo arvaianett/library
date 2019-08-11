@@ -1,0 +1,23 @@
+<app-layout></app-layout>
+<p-card>
+    <p-header>
+        {{bookDetails.volumeInfo.title}}
+    </p-header>
+    <span>Authors:
+        <ul>
+            <li *ngFor="let author of bookDetails.volumeInfo.authors">{{author}}</li>
+        </ul>
+    </span>
+    <img [src]="bookDetails.volumeInfo.imageLinks.thumbnail" alt="thumbnail" style="float: right">
+    <p>Published date: {{bookDetails.volumeInfo.publishedDate}}</p>
+    <div class="book-details">
+        <div>Description:
+            <p>{{bookDetails.volumeInfo.description}}</p>
+        </div>
+    </div>
+    <p-footer>
+        <button pButton type="button" label="Add to my basket" style="margin-right: .25em"></button>
+        <button pButton type="button" label="Add to my library" style="margin-right: .25em"></button>
+        <button pButton type="button" label="Back" class="ui-button-secondary" routerLink="/search"></button>
+    </p-footer>
+</p-card>

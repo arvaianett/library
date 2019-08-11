@@ -1,0 +1,37 @@
+<app-layout></app-layout>
+<div class="ui-g-12">
+    <div class="ui-g-3">
+        <div class="ui-g-12">
+            <div class="ui-inputgroup">
+                <input #searchParamTitle type="text" pInputText placeholder="Title">        
+                <button pButton type="button" label="Search" (click)="searchInTitles(searchParamTitle.value)"></button>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-inputgroup">
+                <input #searchParamAuthor type="text" pInputText placeholder="Author">        
+                <button pButton type="button" label="Search" (click)="searchInAuthors(searchParamAuthor.value)"></button>
+            </div>
+        </div>
+    </div>
+    <div class="ui-g-9">
+        <div class="ui-g-12"  *ngIf="responses">
+            <p-card class="ui-g-4" [style]="{height: '15em'}" styleClass="ui-card-shadow" *ngFor="let response of responses">
+                <p-header (click)="openBookDetails(response.id)" style="cursor: pointer">{{response.volumeInfo.title}}</p-header>
+                    Authors:
+                    <span *ngFor="let author of response.volumeInfo.authors">
+                        <ul>
+                            <li>
+                                {{author}}
+                            </li>
+                        </ul>
+                    </span>
+                    <p-footer *ngIf="response.saleInfo.retailPrice">
+                        <span>
+                                Price: {{response.saleInfo.retailPrice.amount}} {{response.saleInfo.retailPrice.currencyCode}}
+                        </span>
+                    </p-footer>
+            </p-card>
+        </div>
+    </div>
+</div>
